@@ -1,0 +1,42 @@
+{% set name = "lcls2-pgp-pcie-apps" %}
+{% set version = "1.3.1" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  - url:  https://pswww.slac.stanford.edu/swdoc/tutorials/{{ name }}-{{ version }}.tar.gz
+    sha256: db03a76150fc9fb4bb634d44f755fee1579d9c413e3d204c28aa08aab16cb0fa 
+
+build:
+  skip: True  # [win or osx]
+  noarch: python
+  number: 0
+  script:
+    - "cd firmware/python && {{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - python
+    - setuptools
+    - pip
+  run:
+    - python
+
+about:
+  home: https://github.com/slaclab/lcls2-pgp-pcie-apps
+  license: BSD-3-Clause
+  license_family: BSD
+  license_file: LICENSE.txt
+  summary: 'lcls2-pgp-pcie-apps'
+  description: |
+    lcls2-pgp-pcie-apps firmware and software.
+  doc_url: https://github.com/slaclab/lcls2-pgp-pcie-apps
+  dev_url: https://github.com/slaclab/lcls2-pgp-pcie-apps
+
+extra:
+  recipe-maintainers:
+    - valmar
+    - chrisvam
+
